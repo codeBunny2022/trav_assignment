@@ -20,9 +20,8 @@ def activity_suggestions(budget, preferences):
     return f"""Based on your {budget} budget and preferences for {preferences}, I will suggest a set of activities. Do you prefer a mix of famous and hidden attractions, or focus on one category?"""
 
 def generate_itinerary(destination, duration, activities):
-    return f"""Here is your {duration}-day itinerary for {destination}:
-    Day 1: {activities[0]}
-    Day 2: {activities[1]}
-    Day 3: {activities[2]}
-    Day 4: {activities[3]}
-    Day 5: {activities[4]}"""
+    itinerary = []
+    for day in range(1, duration + 1):
+        activity = activities[day % len(activities)]
+        itinerary.append(f"Day {day}: {activity}")
+    return f"Here is your {duration}-day itinerary for {destination}:\n" + "\n".join(itinerary)
